@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "shaped-canyon-401913",
+  "private_key_id": "c5808740b960881512adc449d7d378b7789a4187",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCmXvZUldZtfc8+\nT7940ojge8EAtWwJ9trSCFeKncSvhx3MjypxuBGud54An+Ia8QMKYtz967WkmZOg\nVijGt3dvfs3Hyi1c4jmYXVm/42eX0TWPrXm7P02OmRppSkeFaS3lRup6qWY0Fey7\nuD/oQqgZvXKOJc4x5n+c0eNZ+ql3PqYVLnnYMaXQoLZHtkmfYbNofwG3gIlOk+8x\nCB9w+CES60+19ASZaamCMRVcqdB2vIOGPz+GqLAr1h1jbA35sbtbsg+aFO5PJJBG\n50hZy6nqyWWYJ+RYU3RWO4D4/Pz/wt4mxBXU5MuH3ve8GrNdG8ehRb0kpaXp3w8H\nsLQZC+hfAgMBAAECggEAKRKtprE9OFfEd8IxZ482epEi0112uDkIyayEjDSp75mg\najV4CY4jU1q1l7rhE7ynfwNsQoXUGLhPgVh0Bacapdx8yhOoQlOZW3vEYgKuuwTL\nv9ZYhLk6mPdEVXUglhei3IU28yRqFnbJNIjmwhzeqkgihWRg9OHOZHVOtxKSjtzy\nVorBWXqXB7EL7NSpXKcA4rvBw8Ou8cPB8CoWm5RBBbYuJdyKY5sdQWoMWuUiOYKi\nNWk3ZPhi+ZH1039wvVTYvMdM+p/vGEAyuV0Cc6wX0/lHhN+amA1eecYrTrdxocYn\n3j2xqBbXctcTh+Sh1oo3okMe+K29oKVu7jF5T5yyKQKBgQDrO/JeADGC36ph2CNb\nVjEbZFn7iHZG/TXF6WdSn346AoMtNMYx/zdLvOHrRtM9tbcJfGDf1EzPhXBi8m7R\nXuTrubnjDqNDgcJY7u/sqDMJS4BFDUHT1NQhak4OoKgq/dnK/A5nIEqBsG9Au+MW\nFlGK6bYsRkiZPC6LqgfgrvXAJwKBgQC1DsbRf4GcnqL3mWxOGBIusKWnM3STMgEj\nOpsVdu8lSV1ShG1y59RqHqdvDnMCIlcBrRg7WXi7EHjuNpWMVnwtthRHUUoxy/6b\nKKlE6hTv1Bt6tmiZv2DPTs7SKPJoJsvJAingZDt8xXIhO8lN4GTT/QBuk5dHhCWG\n9J+V3xgBCQKBgE0qxjBWCefv7ZnZaIfe948P1YDxXDOffxNkpPNyxNrM1jFvPZFL\nMt2Sod4nxsZYpSnkdncW0vfEw4CCHR5r7dbyf2tf8ukDWTkJcQWGi++BqBt+5NhT\n2h74G5Eq3N/1lIvFMghcjHSM54Ip4K3vNmLGlm9hwxEZr/87EQiA/LdDAoGBALNb\n0gTTBPi8BcC10Z6DJe/uugsqY/809/+IHP1kdn8/cB1AZpP/qGL/vum7LJ8emYZl\njK2ucnUNWl7Q39DIE/fMecY0dwVhifT2kMheAyOZwScM8A3ukd6LuUJjoc8fL50O\ncaGCaZOunOLjMQXelsORzA2+U4xbEjngtv5mpIbRAoGBAKmn2VlJhwraJbuiEhAQ\n8XRu7Pnuw6GX1jlAKT+XSf/rA9EspeTlxsbY5TL+gNF1cKEQwarX2MplPCZblY6j\nQqD91zbao0Cn8tuILRZjiJ0o8FysoBx6aU3Glp1uIi2MSH3TBO1eWc/8F9ffSJfr\nR6Hx8/YB0xM+ESVXbzIu7Pqr\n-----END PRIVATE KEY-----\n",
+  "client_email": "server@shaped-canyon-401913.iam.gserviceaccount.com",
+  "client_id": "106854601957042488505",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/server%40shaped-canyon-401913.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
