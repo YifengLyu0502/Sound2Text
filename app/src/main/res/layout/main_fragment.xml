@@ -8,28 +8,74 @@
 
     <ImageView
         android:id="@+id/iv_mic"
-        android:layout_width="86dp"
-        android:layout_height="153dp"
+        android:layout_width="89dp"
+        android:layout_height="137dp"
         android:layout_marginEnd="160dp"
         android:src="@drawable/ic_mic"
         app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints"
         tools:layout_conversion_absoluteHeight="60dp"
         tools:layout_conversion_absoluteWidth="60dp"
-        tools:layout_editor_absoluteY="167dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="1dp" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="188dp"
+        android:layout_height="49dp"
+        android:padding="10dp"
+        android:text="tap mic and speak"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_mic"
+        tools:layout_conversion_absoluteHeight="60dp"
+        tools:layout_conversion_absoluteWidth="283dp" />
 
     <TextView
         android:id="@+id/tv_speech_to_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="405dp"
+        android:layout_height="209dp"
         android:padding="10dp"
-        android:text="tap_mic_and_speek"
-        android:textSize="30sp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/text_from_gpt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_mic"
+        app:layout_constraintTop_toBottomOf="@+id/text"
         tools:layout_conversion_absoluteHeight="60dp"
-        tools:layout_conversion_absoluteWidth="283dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_conversion_absoluteWidth="283dp" />
+
+    <TextView
+        android:id="@+id/text_from_gpt"
+        android:layout_width="411dp"
+        android:layout_height="222dp"
+        android:layout_marginBottom="92dp"
+        android:padding="10dp"
+
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_conversion_absoluteHeight="60dp"
+        tools:layout_conversion_absoluteWidth="283dp" />
+
+    <Button
+        android:id="@+id/gpt_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="236dp"
+        android:layout_marginBottom="16dp"
+        android:text="Summarise"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="16dp"
+        android:text="    Upload    "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

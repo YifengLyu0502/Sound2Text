@@ -29,8 +29,8 @@ public class RecordsFragment extends Fragment {
         // Initialize adapter
         adapter = new ArrayAdapter<>(getActivity(), R.layout.list_item, R.id.textView, items);
 
-        String receivedString = getArguments().getString("key_string");
-        items.add(receivedString);
+        //String receivedString = getArguments().getString("key_string");
+        items.add("Item 1");
         items.add("Item 2");
         // Set adapter to the ListView
         RecordsList.setAdapter(adapter);

@@ -46,6 +46,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
 
     //大语言语音模型
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
     implementation 'io.grpc:grpc-okhttp:1.41.0'
     implementation 'com.google.cloud:google-cloud-speech:4.18.0'
     //身份验证依赖
@@ -54,4 +55,12 @@ dependencies {
     //firebase支持
     implementation("com.google.firebase:firebase-storage")
     implementation("com.google.firebase:firebase-database")
+
+    implementation 'com.squareup.retrofit2:retrofit:2.0.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.0.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.2'
+
+
+
+
 }

@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 String email, password;
                 email = emailEditText.getText().toString();
-                password = emailEditText.getText().toString();
+                password = passwordEditText.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(LoginActivity.this, "Please enter email", Toast.LENGTH_SHORT).show();
@@ -85,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     Toast.makeText(LoginActivity.this, "Login successful.",
                                             Toast.LENGTH_SHORT).show();
+                                    //页面跳转
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                     startActivity(intent);
                                     finish();
