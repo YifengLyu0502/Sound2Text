@@ -44,27 +44,26 @@
 
     <!-- Phone Label -->
     <TextView
-        android:id="@+id/phoneLabel"
+        android:id="@+id/courseLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Phone:"
+        android:text="course:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <!-- Phone EditText -->
     <EditText
-        android:id="@+id/phone"
+        android:id="@+id/course"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
-        android:hint="Enter your phone number"
-        android:inputType="phone"
+        android:hint="Enter your course number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/phoneLabel"
-        app:layout_constraintTop_toBottomOf="@+id/phoneLabel" />
+        app:layout_constraintStart_toStartOf="@+id/courseLabel"
+        app:layout_constraintTop_toBottomOf="@+id/courseLabel" />
 
     <!-- Email Label -->
     <TextView
@@ -75,7 +74,7 @@
         android:layout_marginTop="16dp"
         android:text="Email Address:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone" />
+        app:layout_constraintTop_toBottomOf="@+id/course" />
 
     <!-- Email EditText -->
     <EditText

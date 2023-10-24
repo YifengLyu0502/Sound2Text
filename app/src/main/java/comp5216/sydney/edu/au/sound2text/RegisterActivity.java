@@ -32,7 +32,7 @@ import java.util.Map;
 import comp5216.sydney.edu.au.sound2text.LoginActivity;
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText emailEditText, passwordEditText, usernameEditTExt, phoneEditText;
+    EditText emailEditText, passwordEditText, usernameEditTExt, courseEditText;
     Button registerBtn;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
@@ -46,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.email);
         passwordEditText = findViewById(R.id.password);
         usernameEditTExt = findViewById(R.id.username);
-        phoneEditText = findViewById(R.id.phone);
+        courseEditText = findViewById(R.id.course);
 
         registerBtn = findViewById(R.id.register);
         mAuth = FirebaseAuth.getInstance();
@@ -67,11 +67,11 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
-                String email, password, username, phone;
+                String email, password, username, course;
                 email = emailEditText.getText().toString();
                 password = passwordEditText.getText().toString();
                 username = usernameEditTExt.getText().toString();
-                phone = phoneEditText.getText().toString();
+                course = courseEditText.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(RegisterActivity.this, "Please enter email", Toast.LENGTH_SHORT).show();
@@ -96,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     assert user != null;
                                     String userID = user.getUid();
-                                    createUserProfile(userID, username, email, phone);
+                                    createUserProfile(userID, username, email, course);
                                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                     startActivity(intent);
                                     finish();
@@ -119,7 +119,6 @@ public class RegisterActivity extends AppCompatActivity {
         userData.put("email", email);
         userData.put("phone", phone);
         userData.put("Records", new ArrayList<String>());
-        userData.put("courses", new ArrayList<String>());
 
         newUserRef.set(userData).addOnSuccessListener(aVoid -> {
             Toast.makeText(RegisterActivity.this, "New profile created.", Toast.LENGTH_SHORT).show();
