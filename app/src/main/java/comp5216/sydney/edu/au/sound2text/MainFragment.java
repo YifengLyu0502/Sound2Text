@@ -23,17 +23,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import android.speech.SpeechRecognizer;
 import android.speech.RecognitionListener;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.checkerframework.checker.units.qual.C;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
-
+import java.util.UUID;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -48,23 +60,32 @@ import okhttp3.Request;
 import okhttp3.Response;
 public class MainFragment extends Fragment {
     //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
+    FirebaseAuth mAuth;
+    FirebaseUser user;
     private ImageView iv_mic;
     private TextView tv_Speech_to_text,text_gpt;
     private SpeechRecognizer speechRecognizer;
-    String speechText;
-    Button gpt_btn;
+    String speechText, GPT_respond;
+    Button gpt_btn,upload_btn;
     private boolean isListening = false;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     private final StringBuilder continuousSpeechResult = new StringBuilder();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_fragment, container, false);
 
+        //获取当前用户信息
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+
+
         iv_mic = view.findViewById(R.id.iv_mic);
         tv_Speech_to_text = view.findViewById(R.id.tv_speech_to_text);
         text_gpt = view.findViewById(R.id.text_from_gpt);
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(getContext());
         gpt_btn = view.findViewById(R.id.gpt_button);
+        upload_btn = view.findViewById(R.id.upload);
 
         gpt_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,9 +96,10 @@ public class MainFragment extends Fragment {
 
                 backgroundHandler.post(() -> {
                     ChatGPTService service = new ChatGPTService();
-                    service.callChatGPT("Help me summarise these text: " + speechText,new ChatGPTService.CompletionCallback(){
+                    service.callChatGPT("Help me summarise these text: " + tv_Speech_to_text.getText().toString(),new ChatGPTService.CompletionCallback(){
                         @Override
                         public void onCompletion(String result) {
+                            GPT_respond = result;
                             Handler mainHandler = new Handler(Looper.getMainLooper());
                             mainHandler.post(new Runnable() {
                                 @Override
@@ -95,6 +117,30 @@ public class MainFragment extends Fragment {
                     });
                 });
 
+            }
+        });
+
+        upload_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String RecordID= UUID.randomUUID().toString();
+                String Content= GPT_respond;
+                final String[] Label = new String[1];
+
+
+                db.collection("User profile").document(user.getUid())
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                  @Override
+                                                  public void onSuccess(DocumentSnapshot document) {
+                                                      if (document.exists()){
+                                                          //获取他的course
+                                                          Label[0] = (String) document.get("Course");
+                                                      }
+                                                  }
+                                              });
+
+                uploadRecord(RecordID,user,Content, Label[0]);
             }
         });
 
@@ -141,7 +187,6 @@ public class MainFragment extends Fragment {
                     String text_result = tv_Speech_to_text.getText().toString();
                     text_result = text_result + " " + matches.get(0).toString();
                     tv_Speech_to_text.setText(text_result);
-                    speechText = text_result;
 
                     RecordsFragment fragment = new RecordsFragment();
                     Bundle bundle = new Bundle();
@@ -209,6 +254,33 @@ public class MainFragment extends Fragment {
 
 
     //上传到firebase
+    public void uploadRecord(String recordID, FirebaseUser user, String Content, String Label) {
+        CollectionReference RecordInfo = db.collection("records");
+        Map<String, Object> dataOfRecord = new HashMap<>();
+
+        dataOfRecord.put("RecordID", recordID);
+        dataOfRecord.put("owner", user.getUid()); // 存储用户的 UID，而不是整个用户对象
+        dataOfRecord.put("content", Content);
+        dataOfRecord.put("label", Label);
+        dataOfRecord.put("comment", "");
+
+        // 使用 add 方法添加数据，并添加成功和失败的监听器
+        RecordInfo.add(dataOfRecord)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(getActivity(), "Record uploaded successfully.", Toast.LENGTH_SHORT).show();
+                        // 在成功上传后，可以执行其他操作
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getActivity(), "Error uploading record: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        // 在上传失败时，可以处理错误或执行其他操作
+                    }
+                });
+    }
 
 
 }

@@ -21,7 +21,7 @@ import okhttp3.Response;
 public class ChatGPTService {
 
     private static final String CHATGPT_URL = "https://api.openai.com/v1/completions";
-    private static final String API_KEY = "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";
+    private static final String API_KEY = "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";
     public static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
     final String[] finalresult = new String[1];
@@ -46,7 +46,7 @@ public class ChatGPTService {
         RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
         Request request = new Request.Builder()
                 .url("https://api.openai.com/v1/completions")
-                .header("Authorization", "Bearer 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")
+                .header("Authorization", "Bearer " + API_KEY)
                 .post(body)
                 .build();
         client.newCall(request).enqueue(new Callback() {

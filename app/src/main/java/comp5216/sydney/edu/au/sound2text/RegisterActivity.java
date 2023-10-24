@@ -112,13 +112,13 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void createUserProfile(String userID, String username, String email, String phone) {
+    private void createUserProfile(String userID, String username, String email, String course) {
         DocumentReference newUserRef = db.collection("User profile").document(userID);
         Map<String, Object> userData = new HashMap<>();
         userData.put("name", username);
         userData.put("email", email);
-        userData.put("phone", phone);
-        userData.put("Records", new ArrayList<String>());
+        userData.put("Course", course);
+        //userData.put("Records", new ArrayList<String>());
 
         newUserRef.set(userData).addOnSuccessListener(aVoid -> {
             Toast.makeText(RegisterActivity.this, "New profile created.", Toast.LENGTH_SHORT).show();
