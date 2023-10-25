@@ -144,6 +144,8 @@ public class MainFragment extends Fragment {
             }
         });
 
+        String text1;
+        //在下载的文件夹里创建txt文件，并将text1保存进去。
 
 
         speechRecognizer.setRecognitionListener(new RecognitionListener() {

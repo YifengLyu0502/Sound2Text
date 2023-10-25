@@ -118,6 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
         userData.put("name", username);
         userData.put("email", email);
         userData.put("Course", course);
+        userData.put("Admin",0);
         //userData.put("Records", new ArrayList<String>());
 
         newUserRef.set(userData).addOnSuccessListener(aVoid -> {

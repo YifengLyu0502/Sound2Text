@@ -30,8 +30,15 @@ public class RecordsFragment extends Fragment {
         adapter = new ArrayAdapter<>(getActivity(), R.layout.list_item, R.id.textView, items);
 
         //String receivedString = getArguments().getString("key_string");
+
+        //读取数据库里的records，替换掉下面的Item 1,Item 2 ...
         items.add("Item 1");
         items.add("Item 2");
+
+        //点击Item，跳转到相对应的Item的界面
+
+        //点击翻译按钮，翻译文本 (上半部分是原文本，下半部分是翻译后的文本)
+
         // Set adapter to the ListView
         RecordsList.setAdapter(adapter);
         // Inflate the layout for this fragment
