@@ -77,5 +77,19 @@
             android:background="@color/white"
             android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/tv_result_label" />
+
+        <Button
+            android:id="@+id/btn_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="157dp"
+            android:layout_marginBottom="22dp"
+            android:text="Download"
+            app:layout_constraintBottom_toTopOf="@+id/tv_result"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_result_label"
+            app:layout_constraintTop_toBottomOf="@+id/btn_translate" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

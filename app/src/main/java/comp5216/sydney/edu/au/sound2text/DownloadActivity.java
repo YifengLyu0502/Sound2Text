@@ -1,9 +1,9 @@
 package comp5216.sydney.edu.au.sound2text;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,66 +12,65 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class DownloadActivity extends AppCompatActivity {
+    private String translatedText;
+    private String label;
 
-    private TextView recordLabel, recordText;
-    private EditText fileNameInput;
-    private Button downloadButton;
-    private String recordContent, recordLabelContent;
-
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download);
 
-        // Initialize views
-        recordLabel = findViewById(R.id.recordLabel);
-        recordText = findViewById(R.id.recordText);
-        fileNameInput = findViewById(R.id.fileNameInput);
-        downloadButton = findViewById(R.id.downloadButton);
+        // 初始化UI组件
+        TextView textView3 = findViewById(R.id.textView3);
+        TextView textView5 = findViewById(R.id.textView5);
+        EditText etFileName = findViewById(R.id.editTextText);
+        Button btnDownload = findViewById(R.id.download_btn);
 
-        // Get data from intent
-        Intent intent = getIntent();
-        recordContent = intent.getStringExtra("recordContent");
-        recordLabelContent = intent.getStringExtra("recordLabel");
 
-        // Set text to views
-        recordLabel.setText(recordLabelContent);
-        recordText.setText(recordContent);
+        String tvContentData = getIntent().getStringExtra("tv_content_data");
+        String recordLabel = getIntent().getStringExtra("record_label");
 
-        // Set download button click listener
-        downloadButton.setOnClickListener(view -> {
-            String fileName = fileNameInput.getText().toString().trim();
-            if (!fileName.isEmpty()) {
-                downloadFile(fileName);
-            } else {
-                Toast.makeText(DownloadActivity.this, "Please enter a file name", Toast.LENGTH_SHORT).show();
+        textView3.setText(tvContentData);
+        textView5.setText(recordLabel);
+
+        btnDownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String fileName = etFileName.getText().toString();
+                if (!fileName.trim().isEmpty()) {
+                    // 如果label不为空，则在文件名中添加label
+                    String finalFileName = (label != null && !label.trim().isEmpty()) ? label + "_" + fileName : fileName;
+                    downloadFile(finalFileName, translatedText);
+                } else {
+                    Toast.makeText(DownloadActivity.this, "File name cannot be empty", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
-    private void downloadFile(String fileName) {
-        // Check if external storage is available for read and write
-        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-            // Path to the Download directory
-            File downloadPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-            // Create the file with the desired name
-            String finalFileName = (recordLabelContent.isEmpty() ? "" : (recordLabelContent + "_")) + fileName;
-            File file = new File(downloadPath, finalFileName);
-
-            try (FileOutputStream fos = new FileOutputStream(file)) {
-                fos.write(recordContent.getBytes());
-                Toast.makeText(this, "File downloaded: " + finalFileName, Toast.LENGTH_LONG).show();
-            } catch (IOException e) {
-                Toast.makeText(this, "Error saving file: " + e.getMessage(), Toast.LENGTH_LONG).show();
+    private void downloadFile(String fileName, String content) {
+        // 创建文件并写入内容
+        try {
+            File directory = new File(Environment.getExternalStorageDirectory(), "download");
+            if (!directory.exists()) {
+                directory.mkdirs();
             }
-        } else {
-            Toast.makeText(this, "External storage is not available", Toast.LENGTH_LONG).show();
+            File file = new File(directory, fileName);
+            FileWriter writer = new FileWriter(file);
+            writer.append(content);
+            writer.flush();
+            writer.close();
+            Toast.makeText(this, "File download successful: " + file.getAbsolutePath(), Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "File download failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 }
+
+
 
