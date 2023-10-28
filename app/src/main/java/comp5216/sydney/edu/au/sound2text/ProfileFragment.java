@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 public class ProfileFragment extends Fragment {
     Button logoutBtn;
+    Button feedbackBtn;
     public ArrayList<String> items;
     ListView announcementList;
     public ArrayAdapter<String> adapter;
@@ -30,6 +31,7 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.profile_fragment, container, false);
         logoutBtn = view.findViewById(R.id.Logout);
+        feedbackBtn = view.findViewById(R.id.Feedback_btn);
         announcementList = view.findViewById(R.id.AnnouncementList);
         items = new ArrayList<>();
 
@@ -49,20 +51,25 @@ public class ProfileFragment extends Fragment {
 
 
 
-
-
-
-
-
-
-
-
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        // feedback 按钮点击事件
+        feedbackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 切换到提交反馈的界面
+                FeedbackFragment feedbackFragment = new FeedbackFragment();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, feedbackFragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 

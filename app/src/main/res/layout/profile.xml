@@ -17,4 +17,13 @@
         android:layout_alignParentBottom="true"
         app:menu="@menu/bottom_navigation_menu" /> <!-- Assuming you have a menu for the BottomNavigationView -->
 
+    <!--  添加一个FrameLayout容器以放置Fragment  -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

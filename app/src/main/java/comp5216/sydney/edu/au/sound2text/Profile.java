@@ -26,6 +26,10 @@ public class Profile extends Activity {
                 Intent intentRecords = new Intent(Profile.this, Records.class);
                 startActivity(intentRecords);
                 return true;
+            } else if (itemId == R.id.navigation_Profile) {
+                Intent intentProfile = new Intent(Profile.this, Profile.class);
+                startActivity(intentProfile);
+                return true;
             }
             return false;
         });
