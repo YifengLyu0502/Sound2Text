@@ -3,19 +3,11 @@ package comp5216.sydney.edu.au.sound2text;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.Manifest;
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
     Fragment Main;
@@ -63,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
-
     }
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
 

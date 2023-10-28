@@ -5,18 +5,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/ed_input"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="search" />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/ed_input"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="search" />
+        <Button
+            android:id="@+id/button"
+            android:text="search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="77dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
         />
+
+    <ListView
+        android:id="@+id/Records_List"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

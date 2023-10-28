@@ -10,10 +10,10 @@
     <item
         android:id="@+id/navigation_Records"
         android:icon="@android:drawable/ic_input_get"
-        android:title="Profile" />
+        android:title="Records" />
 
     <item
         android:id="@+id/navigation_Profile"
         android:icon="@drawable/fui_ic_anonymous_white_24dp"
-        android:title="Record" />
+        android:title="Profile" />
 </menu>

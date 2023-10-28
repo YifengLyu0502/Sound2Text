@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -40,6 +41,7 @@ public class SearchActivity extends AppCompatActivity {
 
     ArrayList<ModeBean> current = new ArrayList<>();
     MyAdapter adapter;
+    Button button;
     int num = 0;
 
     @SuppressLint("MissingInflatedId")
@@ -52,33 +54,21 @@ public class SearchActivity extends AppCompatActivity {
         adapter = new MyAdapter();
         recyclerView.setAdapter(adapter);
 
+        button = findViewById(R.id.button);
 
-        ed_input.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+        button.setOnClickListener(view -> {
+            String s = ed_input.toString();
+            if (s.isEmpty()) {
+                adapter.bindData(current);
             }
+            ArrayList<ModeBean> list = new ArrayList<>();
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                String s = editable.toString();
-                if (s.isEmpty()) {
-                    adapter.bindData(current);
+            for (ModeBean modeBean : current) {
+                if (modeBean.id.contains(s)) {
+                    list.add(modeBean);
                 }
-                ArrayList<ModeBean> list = new ArrayList<>();
-
-                for (ModeBean modeBean : current) {
-                    if (modeBean.id.contains(s)) {
-                        list.add(modeBean);
-                    }
-                }
-                adapter.bindData(list);
             }
+            adapter.bindData(list);
         });
 
     }

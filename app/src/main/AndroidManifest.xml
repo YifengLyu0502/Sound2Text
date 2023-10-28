@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+
+
 
     <application
         android:allowBackup="true"
@@ -20,28 +21,50 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sound2Text"
         tools:targetApi="31">
+
+        <activity
+            android:name=".Announcement_Detail"
+            android:exported="false" />
         <activity
             android:name=".RecordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ModeBean"
+            android:exported="false" />
+        <activity
+            android:name=".MyAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".MyDialogFragment"
+            android:exported="false" />
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Record"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".Profile"
-            android:exported="true" />
+            android:exported="false" />
 
         <activity
             android:name=".Records"
             android:exported="false" />
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">
-
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -51,15 +74,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".SearchActivity"
-            android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+        <activity android:name="comp5216.sydney.edu.au.sound2text.TranslateActivity" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
     </application>
 
 </manifest>

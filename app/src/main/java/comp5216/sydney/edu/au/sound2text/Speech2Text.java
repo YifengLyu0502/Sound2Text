@@ -1,4 +1,4 @@
-package comp5216.sydney.edu.au.sound2text;//package comp5216.sydney.edu.au.sound2text;
+//package comp5216.sydney.edu.au.sound2text;
 //
 //import android.content.pm.PackageManager;
 //import android.media.AudioFormat;
